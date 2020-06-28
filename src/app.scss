@@ -1,0 +1,40 @@
+.wrap{
+    max-width: 980px;
+    margin: 0 auto;
+    
+}
+.header{
+    text-align: center;
+    h1{
+        font-family: Roboto Condensed;
+        font-weight: normal;
+        font-size: 36px;
+        line-height: 42px;
+        text-transform: uppercase;
+    }
+}
+
+.gallry{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 1px solid #CCCCCC;
+    img{
+        margin: 30px 20px;
+        width: 230px;
+    }
+}
+
+.footer{
+    text-align: center;
+    color: #CCCCCC;
+    padding-top: 12px;
+    span{
+        font-family: Roboto Condensed;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 16px;
+        text-transform: uppercase;
+    }
+
+}
