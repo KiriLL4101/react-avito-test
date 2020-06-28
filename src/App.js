@@ -7,7 +7,7 @@ import './app.scss';
 function App() {
   const [ gallary , setGallary ] = React.useState(null);
   const [ isOpen , setIsOpen ] = React.useState(false);
-  const [ idImg , setIdImg ] = React.useState(0)
+  const [ idImg , setIdImg ] = React.useState(237)
   
   function instansImg(url){
     setIdImg(url);
@@ -30,7 +30,7 @@ function App() {
       {
         !gallary ? "Загрузка..." : 
           gallary.map( image => (
-              <img src={image.url} alt='Изображение' key={image.id} onClick={instansImg.bind(null, image.url)}/>
+              <img src={image.url} alt='Изображение' key={image.id} onClick={instansImg.bind(null, image.id)}/>
           ))
       }
       </div>
