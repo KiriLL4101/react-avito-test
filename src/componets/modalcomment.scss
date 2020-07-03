@@ -77,8 +77,8 @@
     margin-left: 12px;
     font-family: Roboto;
     font-weight: normal;
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 16px;
+    line-height: 19px;
     color: #000000;
     span {
       color: #999999;
@@ -86,7 +86,7 @@
   }
 }
 .show {
-  display: block;
+  display: flex;
 }
 .hide {
   display: none;

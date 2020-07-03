@@ -9,18 +9,19 @@ function App() {
   const [ isOpen , setIsOpen ] = React.useState(false);
   const [ idImg , setIdImg ] = React.useState(237)
   
-  function instansImg(url){
-    setIdImg(url);
+ 
+
+  function instansImg(id){
+    setIdImg(id);
     setIsOpen(true)
   }
-  function hideModalComments() {
-    setIsOpen(false)
-  }
+
   React.useEffect( () => {
     axios.get('https://boiling-refuge-66454.herokuapp.com/images').then(({ data }) => {
       setGallary(data)
     })
   }, [])
+
   return (
     <div className='wrap'>
       <header className="header">
@@ -34,7 +35,7 @@ function App() {
           ))
       }
       </div>
-      <ModalCommets isOpen={ isOpen } onClickClose={hideModalComments} idImg={ idImg }/>
+      <ModalCommets isOpen={ isOpen } onClickClose={() => setIsOpen(false)} idImg={ idImg }/>
       <footer className="footer">
         <span>&copy; 2018-2019</span>
       </footer>
