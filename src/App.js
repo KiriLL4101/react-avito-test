@@ -35,7 +35,10 @@ function App() {
           ))
       }
       </div>
-      <ModalCommets isOpen={ isOpen } onClickClose={() => setIsOpen(false)} idImg={ idImg }/>
+      {
+        isOpen && 
+          <ModalCommets onClose={() => setIsOpen(false)} idImg={ idImg }/>
+      }
       <footer className="footer">
         <span>&copy; 2018-2019</span>
       </footer>

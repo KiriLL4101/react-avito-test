@@ -1,32 +1,33 @@
 import React from "react";
 import axios from "axios";
+import FormComment from './FormComment'
 
 import "./modalcomment.scss";
 import closeSvg from "../assets/close.svg";
 
-export default function ModalCommets({ isOpen, onClickClose, idImg }) {
+export default function ModalCommets({ onClose, idImg }) {
   const [modal, setModal] = React.useState({});
   const modalRef = React.useRef(null);
 
   React.useEffect(() => {
-    if (isOpen) {
-      axios
-        .get("https://boiling-refuge-66454.herokuapp.com/images/" + idImg)
-        .then(({ data }) => {
-          setModal(data);
-        });
-    }
+    axios
+      .get("https://boiling-refuge-66454.herokuapp.com/images/" + idImg)
+      .then(({ data }) => {
+        setModal(data);
+      });
   });
   const handleOutsideClick = (e) => {
     if (!e.path.includes(modalRef.current)) {
-      onClickClose();
+      onClose();
     }
   };
+  const addComment = (newComm) => {
+    
+  }
   React.useEffect(() => {
     document.body.addEventListener("click", handleOutsideClick);
     return () => {
       document.body.removeEventListener("click", handleOutsideClick);
-      
     };
   }, []);
 
@@ -35,7 +36,7 @@ export default function ModalCommets({ isOpen, onClickClose, idImg }) {
     return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
   }
   return (
-    <div className={`modal ${isOpen ? "show" : "hide"}`}>
+    <div className={`modal`}>
       <div ref={modalRef} className={`wrapper`}>
         <div className="modal__content">
           {!modal.url ? (
@@ -43,22 +44,14 @@ export default function ModalCommets({ isOpen, onClickClose, idImg }) {
           ) : (
             <img src={modal.url} alt="Изображение" />
           )}
-          <input type="text" className="name" placeholder="Ваше имя" />
-          <input
-            type="text"
-            className="comment"
-            placeholder="Ваш комментарий"
-          />
-          <button className="modal__btn">
-            <span>Оставить комментарий</span>
-          </button>
+          <FormComment/>
         </div>
         <div className="modal__comments">
           <img
             src={closeSvg}
             alt="close"
             className="close"
-            onClick={onClickClose}
+            onClick={onClose}
           />
           <div className="comments">
             {!modal.comments
