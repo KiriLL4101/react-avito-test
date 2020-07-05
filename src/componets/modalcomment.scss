@@ -61,6 +61,9 @@
     span {
       color: #999999;
     }
+    div:not(:first-child){
+      margin-top: 10px;
+    }
   }
 }
 .modal__btn {

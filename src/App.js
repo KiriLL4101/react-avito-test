@@ -6,16 +6,18 @@ import './app.scss';
 
 function App() {
   const [ gallary , setGallary ] = React.useState(null);
-  const [ isOpen , setIsOpen ] = React.useState(false);
-  const [ idImg , setIdImg ] = React.useState(237)
-  
- 
+  const [ infoModal , setInfoModal ] = React.useState({});
+  const [ isOpen , setIsOpen ] =React.useState(false)
 
   function instansImg(id){
-    setIdImg(id);
-    setIsOpen(true)
+    axios
+    .get("https://boiling-refuge-66454.herokuapp.com/images/" + id)
+    .then(({ data }) => {
+      setInfoModal(data);
+      setIsOpen(true)
+    });
   }
-
+  
   React.useEffect( () => {
     axios.get('https://boiling-refuge-66454.herokuapp.com/images').then(({ data }) => {
       setGallary(data)
@@ -37,7 +39,7 @@ function App() {
       </div>
       {
         isOpen && 
-          <ModalCommets onClose={() => setIsOpen(false)} idImg={ idImg }/>
+          <ModalCommets onClose={() => setIsOpen(false)} infoModal={ infoModal }/>
       }
       <footer className="footer">
         <span>&copy; 2018-2019</span>

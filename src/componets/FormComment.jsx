@@ -1,20 +1,29 @@
 import React from "react";
-import axios from 'axios';
 
-export default function FormComment() {
-    const [ comment , setComment ] = React.useState('');
+export default function FormComment({ onSubmit }) {
+  const [comment, setComment] = React.useState("");
 
-    const handleChange = (e) => {
-        setComment(e.target.value);
-      }
-    const handleSubmit = (e) => {
-        //TODO
-        e.preventDefault();
-      }
+  const handleChange = (e) => {
+    setComment({
+      id: Math.floor(Math.random() * 100),
+      text: e.target.value,
+      date: new Date(),
+    });
+  };
+  const handleSubmit = (e) => {
+    if (e.target.value) {
+      onSubmit(comment);
+    }
+    e.preventDefault();
+  };
   return (
-    <form className="form-comment" onSubmit={handleSubmit}>
+    <form className="form-comment" onSubmit={handleSubmit} action="#">
       <input type="text" placeholder="Ваше имя" />
-      <input type="text" placeholder="Ваш комментарий" value={comment} onChange={handleChange}/>
+      <input
+        type="text"
+        placeholder="Ваш комментарий"
+        onChange={handleChange}
+      />
       <button className="modal__btn">
         <span>Оставить комментарий</span>
       </button>
